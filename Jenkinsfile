@@ -14,6 +14,8 @@ pipeline {
         NEXUS_PORT = '8081'
         NEXUS_GRP_REPO = 'vpro-maven-group'
         NEXUS_LOGIN = 'nexuslogin'
+        SONARSERVER = 'sonarQubeserver'
+        SONARSCANNER = 'sonarQubescanner'
     }
     stages{
         stage('BUILD'){
@@ -37,8 +39,7 @@ pipeline {
                 sh 'mvn -s settings.xml checkstyle:checkstyle'
             }
         }
-        stage('CODE ANALYSIS with SONARQUBE') {
-          
+        stage('SONARQUBE ANALYSIS') {
 		  environment {
              scannerHome = tool 'SONARSCANNER'
           }
